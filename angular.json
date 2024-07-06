@@ -111,6 +111,13 @@
       }
     }
   },
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "spec": false
+      }
+    }
+  },
   "cli": {
     "analytics": false
   }
