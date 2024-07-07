@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent {
   constructor(
     private fb : FormBuilder,
     private authService: AuthService,
+    private router: Router
   ){  }
 
   async login(){
@@ -41,6 +43,19 @@ export class LoginComponent {
         });
         return;
       }
+
+      //si el lohgin sale bien
+      this.authService.token = token!;
+
+      this.router.navigate(['futboista']);
+
+    }, (error) => {
+      console.log('Error: ', error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.error.message,
+      });
     });
 
 

@@ -20,6 +20,15 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
+  //local storage
+  set token(token: string){
+    localStorage.setItem('token', token);
+  }
+
+  get token(){
+    return localStorage.getItem('token') || '';
+  }
+
   //conexion con la Api
   login(data: Login ): Observable<ResponseLogin>{
     const options = {headers: this.headers};
